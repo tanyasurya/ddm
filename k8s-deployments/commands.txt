@@ -31,6 +31,8 @@ kubectl create -f weblogs-svc.yml
 
 kubectl create -f grpc-client-deploy.yml
 
+kubectl create -f busybox-test.yml
+
 -- List all deployments
 kubectl get deployments
 
