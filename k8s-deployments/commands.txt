@@ -6,6 +6,10 @@ Final Run:
 VirtualBox Install - varsion 6.1.34
 https://www.virtualbox.org/wiki/Downloads
 
+Install minikube om mac
+https://minikube.sigs.k8s.io/docs/start/
+
+
 
 From Terminal move to folder directory
 
@@ -41,9 +45,11 @@ kubectl get po -A
 minikube service weblogs --url
 http://<URL>:30000
 
+-- delete all deployments
+minikube delete --all  
 
-minikube delete --all  (delete all deployments)
-
+-- Stop minikube
+minikube stop
 
 -- Sample Deployment
 kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
