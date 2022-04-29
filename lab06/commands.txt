@@ -1,0 +1,14 @@
+
+minikube start
+
+kubectl get po -A
+
+minikube dashboard
+
+minikube delete --all  (delete all deployments)
+
+minikube config set memory 4096
+
+kubectl create -f grpc-server-deploy.yml
+
+kubectl apply -f grpc-server-deploy.yml

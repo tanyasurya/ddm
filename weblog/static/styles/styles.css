@@ -1,0 +1,25 @@
+h1 {
+  color: green;
+  text-align: center;
+}
+
+h2 {
+  color: firebrick;
+  text-align: center;
+}
+
+.heading-text {
+  font-size: 1.3em;
+  color: rgb(94, 92, 101);
+  text-align: left;
+}
+
+.row-text {
+  font-size: 1.3em;
+  color: rgb(46, 52, 46);
+  text-align: center;
+}
+
+.space {
+  white-space: normal;
+}

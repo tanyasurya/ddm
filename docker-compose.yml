@@ -1,0 +1,37 @@
+version: "3"
+services:
+  grpc-server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    ports:
+      - "50051:50051"
+
+  grpc-client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    depends_on:
+      - "grpc-server"
+    command:
+      [
+        "./wait-for-it.sh",
+        "app/grpc-server:50051",
+        "--",
+        "python",
+        "client/client.py",
+      ]
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  weblogs:
+    build:
+      context: .
+      dockerfile: weblog/Dockerfile
+    ports:
+      - "8080:5000"
+    depends_on:
+      - "redis"
