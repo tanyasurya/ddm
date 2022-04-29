@@ -1,25 +1,20 @@
-minikube start
 
-kubectl get po -A
+-----------------------------------------------
 
-minikube dashboard
+Final Run:
 
-minikube delete --all  (delete all deployments)
+VirtualBox Install - varsion 6.1.34
+https://www.virtualbox.org/wiki/Downloads
 
-minikube config set memory 4096
 
-kubectl create -f grpc-server-deploy.yml
+From Terminal move to folder directory
 
-kubectl apply -f grpc-server-deploy.yml
 
-kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
-------------------------------------------
-
-cd k8s-grpc
-
-minikube start --memory=4096 --driver=virtualbox
+minikube start --memory=4096 --driver=hyperkit OR minikube start --memory=4096 --driver=virtualbox
 
 minikube dashboard
+    - will give dashboard url, open it in browser
+
 
 kubectl create -f grpc-server-deploy.yml
 kubectl create -f grpc-server-svc.yml
@@ -32,13 +27,23 @@ kubectl create -f weblogs-svc.yml
 
 kubectl create -f grpc-client-deploy.yml
 
+-- List all deployments
 kubectl get deployments
 
+-- Get status of minikube
 minikube status
 
+-- Get all pods
 kubectl get po -A
 
-minikube service weblogs --url
-http://192.168.59.100:30000
+-- Get the weblogs URL
 
------------------------------------------------
+minikube service weblogs --url
+http://<URL>:30000
+
+
+minikube delete --all  (delete all deployments)
+
+
+-- Sample Deployment
+kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4

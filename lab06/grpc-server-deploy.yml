@@ -9,7 +9,7 @@ spec:
       app: grpc-server
   minReadySeconds: 1
   strategy:
-    type: rollingUpdate
+    type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
