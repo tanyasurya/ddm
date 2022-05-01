@@ -2,3 +2,4 @@ grpcio
 googleapis-common-protos
 flask
 redis
+flask_monitoringdashboard

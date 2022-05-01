@@ -1,13 +1,22 @@
 from flask import Flask, render_template
 import redis
+import flask_monitoringdashboard as dashboard
+
 
 app = Flask(__name__)
+dashboard.bind(app)
+
 
 
 def formatResults(res):
     res.strip("b'")
     res.strip("'")
     return res
+
+
+@app.route('/health')
+def index():
+    return 'Application is Healthy!'
 
 
 @app.route('/')

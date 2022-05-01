@@ -9,12 +9,22 @@ https://www.virtualbox.org/wiki/Downloads
 Install minikube om mac
 https://minikube.sigs.k8s.io/docs/start/
 
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.21.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+
+curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.17.0/minikube-darwin-amd64
+chmod +x minikube
+sudo mv minikube /usr/local/bin/
+
+
+curl -Lo kubeless https://github.com/vmware-archive/kubeless/releases/download/v1.0.6/kubeless_linux-amd64.zip
 
 
 From Terminal move to folder directory
 
 
-minikube start --memory=4096 --driver=hyperkit OR minikube start --memory=4096 --driver=virtualbox
+minikube start --memory=4096 --driver=hyperkit 
+OR 
+minikube start --memory=4096 --driver=virtualbox
 
 minikube dashboard
     - will give dashboard url, open it in browser
@@ -55,3 +65,78 @@ minikube stop
 
 -- Sample Deployment
 kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
+
+
+url -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
+
+curl -LO "https://dl.k8s.io/release/v1.17.0/bin/darwin/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+sudo chown root: /usr/local/bin/kubectl
+
+
+
+Kubeless Install
+
+https://www.youtube.com/watch?v=kxW5AjsveEk
+
+
+curl -LO https://storage.googleapis.com/minikube/releases/v0.23.3/minikube-darwin-amd64
+
+
+https://www.bswen.com/2020/09/kubeless-tutorial-hello-world.html
+
+➜  kubectl cluster-info
+➜  kubectl create ns kubeless
+➜  kubectl create -f https://github.com/kubeless/kubeless/releases/download/v1.0.6/kubeless-v1.0.6.yaml
+
+Verify installation
+➜  kubectl get deployment -n kubeless
+
+export OS=$(uname -s| tr '[:upper:]' '[:lower:]')
+
+curl -OL https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless_$OS-amd64.zip && \
+  unzip kubeless_$OS-amd64.zip && \
+  sudo mv bundles/kubeless_$OS-amd64/kubeless /usr/local/bin/
+
+curl -OL https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless_$OS-amd64.zip && \
+  unzip kubeless_$OS-amd64.zip && \
+  sudo mv bundles/kubeless_$OS-amd64/kubeless /usr/local/bin/
+
+curl -L https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless_$OS-amd64.zip > kubeless.zip
+
+https://github.com/vmware-archive/kubeless/releases
+
+curl -L https://github.com/vmware-archive/kubeless/releases/download/v1.0.8/kubeless_darwin-amd64.zip > kubeless.zip
+
+unzip kubeless.zip
+
+sudo mv bundles/kubeless_darwin-amd64/kubeless /usr/local/bin/
+
+
+kubeless function deploy hello --runtime python2.7 --from-file hello.py --handler hello.hello --namespace kubeless
+
+----OLD
+
+Reference: https://docs.bitnami.com/tutorials/get-started-serverless-computing-kubeless/
+latest version https://github.com/vmware-archive/kubeless (tag v1.0.8)
+
+curl -L https://github.com/kubeless/kubeless/releases/download/0.0.20/kubeless_darwin-amd64.zip > kubeless.zip
+unzip kubeless.zip
+
+Deploy Kubeless
+===============
+
+export RELEASE=1.0.8
+
+kubectl create ns kubeless
+kubectl create -f https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless-$RELEASE.yaml
+
+
+
+
+
+
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/darwin/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
