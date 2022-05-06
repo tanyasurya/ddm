@@ -1,11 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, escape, Markup
 import redis
 import flask_monitoringdashboard as dashboard
 
 
 app = Flask(__name__)
 dashboard.bind(app)
-
 
 
 def formatResults(res):
@@ -26,6 +25,9 @@ def print_logs():
     avg_university_faculties = ''
     max_international_students = ''
     average_international_students = ''
+
+    quote_text = ''
+    quote_author = ''
 
     try:
         result.clear()
@@ -50,11 +52,20 @@ def print_logs():
                 max_international_students = val
             elif(str_key == "average_international_students"):
                 average_international_students = val
+            elif(str_key == "quote_text"):
+                quote = val.split(',')
+                quote_text = quote[0].replace('$', ',')
+                #quote_text = quote_text.replace('-', '')
+                quote_author = quote[1].replace('$', ',')
+                quote_author = quote_author.replace('-', '')
+    
+                
+
 
     except Exception as ex:
         output = 'Error:' + str(ex)
 
-    return render_template('index.html', res1=universities_usa, res2=avg_university_faculties, res3=max_international_students, res4=average_international_students)
+    return render_template('index.html', res1=universities_usa, res2=avg_university_faculties, res3=max_international_students, res4=average_international_students, res5=quote_text, res6=quote_author)
 
 
 if __name__ == '__main__':

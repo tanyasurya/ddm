@@ -33,7 +33,7 @@ def run():
     with grpc.insecure_channel('grpc-server:50051') as channel:
         stub = bidirectional_pb2_grpc.BidirectionalStub(channel)
         response = stub.GetServerResponse(create_message())
-        print("There server has completed =  %s" % response.response)
+        print("There server message has completed =  %s" % response.response)
 
 
 if __name__ == '__main__':
