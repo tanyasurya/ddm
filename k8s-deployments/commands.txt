@@ -1,4 +1,43 @@
 
+docker images
+
+ddm_weblogs             latest    94e7d10ae8fc   30 minutes ago   1.28GB
+ddm_grpc-server         latest    0f342e25e633   31 minutes ago   1.14GB
+ddm_grpc-quote-server   latest    d24dd0a68226   31 minutes ago   1.14GB
+ddm_grpc-client         latest    759d117cdf3e   31 minutes ago   1.14GB
+ddm_grpc-quote-client   latest    1b458ebe5304   31 minutes ago   1.14GB
+redis                   alpine    8a0942cae737   9 days ago       36.5MB
+
+docker tag ddm_weblogs iamtanya/weblogs:latest
+docker tag ddm_grpc-server iamtanya/grpc-server:latest
+docker tag ddm_grpc-client iamtanya/grpc-client:latest
+docker tag ddm_grpc-quote-server iamtanya/quote-server
+docker tag ddm_grpc-quote-client iamtanya/quote-client
+
+docker push iamtanya/weblogs:latest
+docker push iamtanya/grpc-server:latest
+docker push iamtanya/grpc-client:latest
+docker push iamtanya/quote-server
+docker push iamtanya/quote-client
+
+kubectl create -f grpc-server-svc.yml
+kubectl create -f quote-server-svc.yml
+kubectl create -f weblogs-svc.yml
+kubectl create -f busybox-test.yml
+kubectl create -f redis-svc.yml
+
+kubectl create -f grpc-server-deploy.yml
+kubectl create -f grpc-client-deploy.yml
+kubectl create -f quote-server-deploy.yml
+kubectl create -f quote-client-deploy.yml
+kubectl create -f redis-deploy.yml
+kubectl create -f weblogs-deploy.yml
+
+
+
+
+Second DataSet
+
 Inspiration Quotes
 https://www.kaggle.com/datasets/sanjeetsinghnaik/quotes-from-goodread?select=time_quotes.csv
 

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quote-client-deploy
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: quote-client
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: quote-client
+    spec:
+      containers:
+        - name: quote-client
+          image: iamtanya/quote-client:latest
