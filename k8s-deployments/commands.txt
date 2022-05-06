@@ -1,4 +1,9 @@
 
+Inspiration Quotes
+https://www.kaggle.com/datasets/sanjeetsinghnaik/quotes-from-goodread?select=time_quotes.csv
+
+
+
 -----------------------------------------------
 
 Final Run:
@@ -19,9 +24,16 @@ sudo mv minikube /usr/local/bin/
 curl -Lo kubeless https://github.com/vmware-archive/kubeless/releases/download/v1.0.6/kubeless_linux-amd64.zip
 
 
+curl -LO https://storage.googleapis.com/minikube/releases/v1.17.2/minikube-darwin-amd64
+sudo install minikube-darwin-amd64 /usr/local/bin/minikube
+
+
+
+
 From Terminal move to folder directory
 
-
+minikube start --memory=4096
+OR
 minikube start --memory=4096 --driver=hyperkit 
 OR 
 minikube start --memory=4096 --driver=virtualbox
@@ -84,6 +96,12 @@ https://www.youtube.com/watch?v=kxW5AjsveEk
 curl -LO https://storage.googleapis.com/minikube/releases/v0.23.3/minikube-darwin-amd64
 
 
+curl -LO https://storage.googleapis.com/minikube/releases/v1.0.6/minikube-darwin-amd64
+
+kubectl create ns kubeless
+kubectl create -f https://github.com/kubeless/kubeless/releases/download/v1.0.6/kubeless-v1.0.6.yaml 
+
+
 https://www.bswen.com/2020/09/kubeless-tutorial-hello-world.html
 
 ➜  kubectl cluster-info
@@ -135,8 +153,49 @@ kubectl create -f https://github.com/kubeless/kubeless/releases/download/$RELEAS
 
 
 
-
-
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/darwin/amd64/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.21.11/bin/darwin/amd64/kubectl
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
+
+curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.17.1/minikube-darwin-amd64
+chmod +x minikube
+sudo mv minikube /usr/local/bin/
+
+minikube start --memory=4096 --driver=hyperkit
+
+minikube dashboard
+    - will give dashboard url, open it in browser
+
+
+kubectl create -f grpc-server-deploy.yml
+kubectl create -f grpc-server-svc.yml
+
+kubectl create -f redis-deploy.yml
+kubectl create -f redis-svc.yml
+
+kubectl create -f weblogs-deploy.yml
+kubectl create -f weblogs-svc.yml
+
+kubectl create -f grpc-client-deploy.yml
+
+kubectl create -f busybox-test.yml
+
+-- List all deployments
+kubectl get deployments
+
+-- Get status of minikube
+minikube status
+
+-- Get all pods
+kubectl get po -A
+
+-- Get the weblogs URL
+
+minikube service weblogs --url
+http://<URL>:30000
+
+-- delete all deployments
+minikube delete --all  
+
+-- Stop minikube
+minikube stop
