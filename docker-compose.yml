@@ -7,7 +7,7 @@ services:
     ports:
       - "50051:50051"
 
-  grpc-quote-server:
+  quote-server:
     build:
       context: .
       dockerfile: quote-server/Dockerfile
@@ -29,16 +29,16 @@ services:
         "client/client.py",
       ]
 
-  grpc-quote-client:
+  quote-client:
     build:
       context: .
       dockerfile: quote-client/Dockerfile
     depends_on:
-      - "grpc-quote-server"
+      - "quote-server"
     command:
       [
         "./wait-for-it.sh",
-        "app/grpc-quote-server:50052",
+        "app/quote-server:50052",
         "--",
         "python",
         "quote-client/client.py",

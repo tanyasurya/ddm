@@ -40,7 +40,7 @@ def processString(txt):
 
 
 def run():
-    with grpc.insecure_channel('grpc-quote-server:50052') as channel:
+    with grpc.insecure_channel('quote-server:50052') as channel:
         stub = bidirectional_pb2_grpc.BidirectionalStub(channel)
         response = stub.GetServerResponse(create_message())
         print("The quote server message has completed =  %s" % response.response)
