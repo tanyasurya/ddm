@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: quote-server-deploy
 spec:
-  replicas: 1
+  replicas: 6
   selector:
     matchLabels:
       app: quote-server

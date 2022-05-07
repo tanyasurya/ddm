@@ -1,0 +1,12 @@
+service: passgen
+
+provider:
+  name: kubeless
+  runtime: python3.4
+
+plugins:
+  - serverless-kubeless
+
+functions:
+  passgen:
+    handler: handler.passgen
