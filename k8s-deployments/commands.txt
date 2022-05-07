@@ -27,15 +27,17 @@ minikube dashboard
 kubectl create -f grpc-server-svc.yml
 kubectl create -f quote-server-svc.yml
 kubectl create -f weblogs-svc.yml
-kubectl create -f busybox-test.yml
 kubectl create -f redis-svc.yml
 
 kubectl create -f grpc-server-deploy.yml
-kubectl create -f grpc-client-deploy.yml
 kubectl create -f quote-server-deploy.yml
+kubectl create -f grpc-client-deploy.yml
 kubectl create -f quote-client-deploy.yml
-kubectl create -f redis-deploy.yml
 kubectl create -f weblogs-deploy.yml
+
+kubectl create -f redis-deploy.yml
+kubectl create -f busybox-test.yml
+
 
 -- Scale up or Down Service
 kubectl scale --replicas=2 deployment quote-server-deploy
@@ -112,6 +114,8 @@ kubectl get po -A
 
 minikube service weblogs --url
 http://<URL>:30000
+OR
+minikube service weblogs
 
 -- delete all deployments
 minikube delete --all  

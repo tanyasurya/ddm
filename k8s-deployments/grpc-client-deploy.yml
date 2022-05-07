@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: grpc-client-deploy
 spec:
-  replicas: 10
+  replicas: 1
   selector:
     matchLabels:
       app: grpc-client
