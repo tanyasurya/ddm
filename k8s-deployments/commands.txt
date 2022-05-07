@@ -20,9 +20,17 @@ docker push iamtanya/grpc-client:latest
 docker push iamtanya/quote-server
 docker push iamtanya/quote-client
 
+
+From Terminal move to folder directory
+
 minikube start --memory=4096
+OR
+minikube start --memory=4096 --driver=hyperkit 
+OR 
+minikube start --memory=4096 --driver=virtualbox
 
 minikube dashboard
+    - will give dashboard url, open it in browser
 
 kubectl create -f grpc-server-svc.yml
 kubectl create -f quote-server-svc.yml
@@ -38,9 +46,32 @@ kubectl create -f weblogs-deploy.yml
 kubectl create -f redis-deploy.yml
 kubectl create -f busybox-test.yml
 
-
 -- Scale up or Down Service
 kubectl scale --replicas=2 deployment quote-server-deploy
+
+-- List all deployments
+kubectl get deployments
+
+-- Get all services
+kubectl get svc
+
+-- Get status of minikube
+minikube status
+
+
+-- Get all pods
+kubectl get po -A
+
+-- Get the weblogs URL
+
+minikube service weblogs --url
+http://<URL>:30000
+
+-- Stop minikube
+minikube stop
+
+-- delete all deployments
+minikube delete --all  
 
 
 Second DataSet
@@ -117,11 +148,7 @@ http://<URL>:30000
 OR
 minikube service weblogs
 
--- delete all deployments
-minikube delete --all  
 
--- Stop minikube
-minikube stop
 
 -- Sample Deployment
 kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
