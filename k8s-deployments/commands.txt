@@ -20,6 +20,10 @@ docker push iamtanya/grpc-client:latest
 docker push iamtanya/quote-server
 docker push iamtanya/quote-client
 
+minikube start --memory=4096
+
+minikube dashboard
+
 kubectl create -f grpc-server-svc.yml
 kubectl create -f quote-server-svc.yml
 kubectl create -f weblogs-svc.yml
@@ -33,7 +37,8 @@ kubectl create -f quote-client-deploy.yml
 kubectl create -f redis-deploy.yml
 kubectl create -f weblogs-deploy.yml
 
-
+-- Scale up or Down Service
+kubectl scale --replicas=2 deployment quote-server-deploy
 
 
 Second DataSet
